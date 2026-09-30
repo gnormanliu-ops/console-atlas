@@ -146,6 +146,8 @@ async function initDashboard(){
       document.getElementById('chart-family').innerHTML=barChart(get('family',3),{format,maxItems:3});
       document.getElementById('chart-platform').innerHTML=barChart(get('platform',8),{format,maxItems:8});
       document.getElementById('chart-breakdown').innerHTML=barChart(get(by,10),{format,maxItems:10});
+      const familyCoverage=groups(filtered,'family').sort((a,b)=>['Nintendo','PlayStation','Xbox'].indexOf(a.label)-['Nintendo','PlayStation','Xbox'].indexOf(b.label));
+      document.getElementById('coverage-family').innerHTML=familyCoverage.length?familyCoverage.map(d=>`<div class="coverage-row"><strong>${esc(d.label)}</strong><span>${fmt(d.count)} entries</span><span>Reviewed <b>${money(100*d.scoreN/d.count)}%</b> <small>(${fmt(d.scoreN)})</small></span><span>Hours <b>${money(100*d.hoursN/d.count)}%</b> <small>(${fmt(d.hoursN)})</small></span></div>`).join(''):'<p class="empty">No entries match these filters.</p>';
       const labels={year:'first release year',family:'console family',platform:'platform',genre:'primary genre'};
       document.getElementById('breakdown-title').textContent=`By ${labels[by]}`;
       document.getElementById('table-title').textContent=`By ${labels[by]}`;
