@@ -18,12 +18,14 @@ The source files can be downloaded by the rebuild script. The included derived C
 | `dashboard.html` | Filterable in-browser dashboard with four charts and an underlying-numbers table. |
 | `styles.css` | Shared responsive design for both pages. |
 | `site.js` | Report rendering, browser-side filtering, calculations, and charts. |
-| `assets/covers/*.jpg` | Local decorative game cover images used in the moving backdrop. |
-| `assets/logos/*.svg` | Local Nintendo Switch, PlayStation, and Xbox brand marks. |
+| `assets/covers/*.jpg`, `extra-*.js` | Local decorative game cover images used in the moving backdrop. |
+| `assets/logos/*.svg` | Original Console Atlas compass mark and local console brand marks. |
 | `assets/hardware/*` | Local product photographs for the expandable hardware cards. |
 | `data/console_games.csv` | Cleaned analysis table, 51,583 rows and 15 columns. |
 | `data/console_games.json` | The same rows in compact browser-friendly format. |
 | `data/report.json` | Reproducible summary values for report charts and text. |
+| `data/advanced.json`, `scripts/build_advanced.py` | Deeper descriptive analyses and their reproducible builder. |
+| `scripts/build_extra_covers.py` | Fetches and compresses 18 additional Steam Library covers into three local image bundles (requires Pillow). |
 | `scripts/build_data.py` | Downloads public source files and rebuilds all data and summaries. |
 | `start-website.bat` | Starts a local web server on Windows with Python 3. |
 
@@ -34,6 +36,7 @@ The source files can be downloaded by the rebuild script. The included derived C
 | `assets/logos/nintendo-switch.svg` | Nintendo Switch mark in the Nintendo card. |
 | `assets/logos/playstation.svg` | PlayStation mark in the PlayStation card. |
 | `assets/logos/xbox.svg` | Xbox mark in the Xbox card. |
+| `assets/logos/console-atlas.svg` | Original C-shaped compass logo in both navigation bars. |
 | `assets/hardware/switch-2.jpg` | Nintendo Switch 2 product photo. |
 | `assets/hardware/ps5-pro.jpg` | PlayStation 5 Pro product photo. |
 | `assets/hardware/xbox-series-x.png` | Xbox Series X product photo. |
@@ -55,8 +58,11 @@ The source files can be downloaded by the rebuild script. The included derived C
 | `assets/covers/1868140.jpg` | Dave the Diver cover. |
 | `assets/covers/782330.jpg` | Doom Eternal cover. |
 | `assets/covers/1794680.jpg` | Vampire Survivors cover. |
+| `assets/covers/extra-1.js` | Compressed Steam Library covers: Baldur's Gate 3, Red Dead Redemption 2, Sekiro: Shadows Die Twice, Control, Subnautica, Outer Wilds. |
+| `assets/covers/extra-2.js` | Compressed Steam Library covers: A Short Hike, Undertale, Death Stranding, Monster Hunter: World, Persona 5 Royal, Stray. |
+| `assets/covers/extra-3.js` | Compressed Steam Library covers: Ori and the Blind Forest, Resident Evil 4, Hogwarts Legacy, Horizon Zero Dawn, God of War, Spiritfarer. |
 
-The main navigation links **Report** and **Dashboard** at the top of both pages. The dashboard's Platform menu updates when the game-first-release year or console family changes and clears an incompatible platform selection. With a year selected, the menu and filtered results also exclude consoles that launched after that year. The dashboard gives selection-specific readings of catalog duplication, leading platforms and genres, and review and playtime coverage, plus a family-by-family coverage breakdown with its denominators. Chart panels with fewer bars shrink to their content and stack independently in each column. The report includes expandable hardware previews for Nintendo Switch 2, PlayStation 5 Pro, and Xbox Series X, with links to the manufacturers' official product pages. These hardware previews are decorative and are not observations in the 2010–2023 analysis. The moving backdrop uses local copies of Steam Library cover artwork for 18 games in the cleaned dataset; the respective game publishers own their artwork. The photos come from official [Nintendo](https://www.nintendo.com/us/store/products/nintendo-switch-2-system-123669/), [PlayStation](https://www.playstation.com/en-us/ps5/ps5-pro/), and [Xbox](https://www.xbox.com/en-us/consoles/xbox-series-x) product pages. Nintendo Switch and PlayStation symbols are sourced from [Simple Icons v13](https://github.com/simple-icons/simple-icons); Xbox's symbol is from [Font Awesome Free Brands](https://fontawesome.com/icons/xbox?f=brands&s=solid). All decorative images are packaged locally, so they appear without a separate image-host connection. The browser still needs a local HTTP server to load the analysis JSON.
+The main navigation links **Report** and **Dashboard** at the top of both pages. The dashboard's Platform menu updates when the game-first-release year or console family changes and clears an incompatible platform selection. With a year selected, the menu and filtered results also exclude consoles that launched after that year. The dashboard gives selection-specific readings of catalog duplication, leading platforms and genres, and review and playtime coverage, plus a family-by-family coverage breakdown with its denominators. Chart panels with fewer bars shrink to their content and stack independently in each column. The report includes expandable hardware previews for Nintendo Switch 2, PlayStation 5 Pro, and Xbox Series X, with links to the manufacturers' official product pages. These hardware previews are decorative and are not observations in the 2010–2023 analysis. The moving backdrop uses local copies of Steam Library cover artwork for 36 games in the cleaned dataset, six distinct titles per moving column; the respective game publishers own their artwork. The new C-shaped compass logo is original SVG artwork for this site. The photos come from official [Nintendo](https://www.nintendo.com/us/store/products/nintendo-switch-2-system-123669/), [PlayStation](https://www.playstation.com/en-us/ps5/ps5-pro/), and [Xbox](https://www.xbox.com/en-us/consoles/xbox-series-x) product pages. Nintendo Switch and PlayStation symbols are sourced from [Simple Icons v13](https://github.com/simple-icons/simple-icons); Xbox's symbol is from [Font Awesome Free Brands](https://fontawesome.com/icons/xbox?f=brands&s=solid). All decorative images are packaged locally, so they appear without a separate image-host connection. The browser still needs a local HTTP server to load the analysis JSON.
 
 ## Data model and limitations
 
