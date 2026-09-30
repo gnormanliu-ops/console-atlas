@@ -60,3 +60,10 @@ main.shell,.site-footer{position:relative;z-index:1}
 .analysis-insights{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:14px}.analysis-card{padding:20px 22px;border:1px solid var(--line);border-radius:10px;background:#141d30f5;box-shadow:0 22px 65px #050a1663}.analysis-card>span{color:var(--blue);font:700 .7rem 'Space Grotesk',sans-serif;letter-spacing:.14em}.analysis-card h3{font-size:1.16rem;margin:10px 0 8px}.analysis-card p{font-size:.9rem;line-height:1.65;margin:0}
 .chart-grid{align-items:start}.chart-card{min-height:0;align-self:start}.chart-card .empty{padding:6px 0 10px}
 @media(max-width:700px){.analysis-heading{display:block}.analysis-heading p{text-align:left;margin-top:8px}.analysis-insights{grid-template-columns:1fr}}
+
+/* Stack each chart column independently so short breakdowns leave no grid-row gap. */
+.chart-grid{align-items:start}.chart-column{display:grid;align-content:start;gap:18px;min-width:0}.chart-column .chart-card{width:100%}
+.coverage-card>p{margin:0 0 17px;font-size:.86rem;line-height:1.55}.coverage-list{display:grid;gap:9px}.coverage-row{display:grid;grid-template-columns:minmax(95px,1fr) auto;gap:3px 16px;border-top:1px solid var(--line);padding-top:9px;font-size:.83rem;color:var(--muted)}.coverage-row strong{color:var(--text)}.coverage-row span:nth-child(2){text-align:right}.coverage-row span:nth-child(n+3){font-size:.79rem}.coverage-row b{color:var(--text)}.coverage-row small{color:var(--muted)}
+.report-intro{gap:clamp(42px,6vw,90px)}.intro-copy{padding:30px 34px 30px 28px}
+@media(max-width:900px){.report-intro{gap:32px}.intro-copy{padding:24px 25px 24px 20px}}
+@media(max-width:700px){.chart-grid{grid-template-columns:1fr}.intro-copy{padding:22px 20px}.report-intro{gap:24px}}
