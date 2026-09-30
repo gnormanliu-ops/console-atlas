@@ -1,0 +1,127 @@
+{
+  "row_count": 51583,
+  "unique_games": 26280,
+  "year_count": 14,
+  "platform_count": 26,
+  "raw_rows": 60584,
+  "deduplicated_games": 41616,
+  "drops": {
+    "outside_2010_2023": 9998,
+    "invalid_date_or_list": 4971,
+    "no_selected_platform": 367
+  },
+  "years": {
+    "2010": 1788,
+    "2011": 1646,
+    "2012": 1861,
+    "2013": 2084,
+    "2014": 2256,
+    "2015": 2782,
+    "2016": 2996,
+    "2017": 3545,
+    "2018": 4088,
+    "2019": 4388,
+    "2020": 5029,
+    "2021": 6776,
+    "2022": 6879,
+    "2023": 5465
+  },
+  "families": {
+    "Nintendo": 17512,
+    "PlayStation": 19820,
+    "Xbox": 14251
+  },
+  "top_platforms": {
+    "Nintendo Switch": 13489,
+    "PlayStation 4": 11297,
+    "Xbox One": 9095,
+    "PlayStation 5": 3457,
+    "Xbox Series X|S": 3161,
+    "PlayStation 3": 2429,
+    "Xbox 360": 1988,
+    "PlayStation Vita": 1809,
+    "Nintendo 3DS": 1452,
+    "PlayStation Portable": 736
+  },
+  "eras": [
+    {
+      "label": "2010–2013",
+      "total": 4396,
+      "multi": 1469,
+      "percent": 33.4
+    },
+    {
+      "label": "2014–2017",
+      "total": 5870,
+      "multi": 2750,
+      "percent": 46.8
+    },
+    {
+      "label": "2018–2020",
+      "total": 6904,
+      "multi": 3522,
+      "percent": 51.0
+    },
+    {
+      "label": "2021–2023",
+      "total": 9110,
+      "multi": 3865,
+      "percent": 42.4
+    }
+  ],
+  "genres": {
+    "Shooter": 9048,
+    "Role-playing (RPG)": 7164,
+    "Platform": 6933,
+    "Puzzle": 6004,
+    "Simulator": 4570,
+    "Adventure": 3615,
+    "Fighting": 3318,
+    "Racing": 2400
+  },
+  "score": {
+    "Nintendo": {
+      "mean": 65.6,
+      "n": 6363
+    },
+    "PlayStation": {
+      "mean": 66.3,
+      "n": 8986
+    },
+    "Xbox": {
+      "mean": 66.6,
+      "n": 6576
+    }
+  },
+  "hours": {
+    "Nintendo": {
+      "median": 5.2,
+      "n": 5748
+    },
+    "PlayStation": {
+      "median": 6.5,
+      "n": 8119
+    },
+    "Xbox": {
+      "median": 6.2,
+      "n": 6030
+    }
+  },
+  "coverage": {
+    "Nintendo": {
+      "n": 6363,
+      "total": 17512,
+      "percent": 36.3
+    },
+    "PlayStation": {
+      "n": 8986,
+      "total": 19820,
+      "percent": 45.3
+    },
+    "Xbox": {
+      "n": 6576,
+      "total": 14251,
+      "percent": 46.1
+    }
+  }
+}
