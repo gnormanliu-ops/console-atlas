@@ -21,7 +21,16 @@ const coverGames = [
   ["No Man's Sky",275850],['Ori and the Will of the Wisps',1057090],
   ['Slay the Spire',646570],['Terraria',105600],['Portal 2',620],
   ['It Takes Two',1426210],['Dave the Diver',1868140],
-  ['Doom Eternal',782330],['Vampire Survivors',1794680]
+  ['Doom Eternal',782330],['Vampire Survivors',1794680],
+  ["Baldur's Gate 3",1086940],['Red Dead Redemption 2',1174180],
+  ['Sekiro: Shadows Die Twice',814380],['Control',870780],
+  ['Subnautica',264710],['Outer Wilds',753640],
+  ['A Short Hike',1055540],['Undertale',391540],
+  ['Death Stranding',1190460],['Monster Hunter: World',582010],
+  ['Persona 5 Royal',1687950],['Stray',1332010],
+  ['Ori and the Blind Forest',261570],['Resident Evil 4',2050650],
+  ['Hogwarts Legacy',990080],['Horizon Zero Dawn',1151640],
+  ['God of War',1593500],['Spiritfarer',972660]
 ];
 function initCoverWall(){
   const wall=document.createElement('div');
@@ -30,14 +39,15 @@ function initCoverWall(){
   for(let column=0;column<6;column++){
     const strip=document.createElement('div');
     strip.className='cover-column';
-    const selection=coverGames.slice(column*3,column*3+3);
-    for(let repeat=0;repeat<2;repeat++)for(const [title,id] of selection){
+    // Six distinct titles per column keep the wall varied as it drifts.
+    const selection=coverGames.filter((_,i)=>i%6===column);
+    for(const [title,id] of selection){
       const tile=document.createElement('div');
       tile.className='cover-tile';
       tile.style.setProperty('--cover-hue',String((id*7)%360));
       const label=document.createElement('span');label.textContent=title;
       const art=document.createElement('img');
-      art.src=`assets/covers/${id}.jpg`;
+      art.src=window.extraCoverData?.[id]||`assets/covers/${id}.jpg`;
       art.alt='';art.decoding='async';
       art.addEventListener('error',()=>art.remove(),{once:true});
       tile.append(label,art);strip.append(tile);
