@@ -125,12 +125,14 @@ async function initDashboard(){
         const platformStory=platformRanks.length>1
           ?`${topPlatform.label} contributes ${fmt(topPlatform.count)} of ${fmt(all.count)} game–platform entries (${share(topPlatform.count)}%) within this selection. This is catalog coverage, not sales or console popularity.`
           :`All ${fmt(all.count)} entries are on ${topPlatform.label} in this selection. Clear the Platform or other filters to compare consoles; this slice alone cannot rank them.`;
+        const genreComparison=genreRanks.length>1
+          ?`, ${genreRanks[1].count===topGenre.count?'tied with':'ahead of'} ${genreRanks[1].label} at ${fmt(genreRanks[1].count)}`:'';
         const genreStory=genreRanks.length>1
-          ?`${topGenre.label} accounts for ${fmt(topGenre.count)} entries (${share(topGenre.count)}%)${genreRanks[1]?`, ahead of ${genreRanks[1].label} at ${fmt(genreRanks[1].count)}`:''}. Each game–platform row uses only its first listed genre.`
+          ?`${topGenre.label} accounts for ${fmt(topGenre.count)} entries (${share(topGenre.count)}%)${genreComparison}. Each game–platform row uses only its first listed genre.`
           :`All entries here have ${topGenre.label} as their recorded primary genre. The selected slice cannot show the wider genre mix; clear the Genre filter to compare it.`;
         const coverage=100*all.scoreN/all.count,hourCoverage=100*all.hoursN/all.count;
         insights.innerHTML=
-          insight('01 / SCOPE',`${fmt(all.unique)} distinct games`,`${fmt(all.count)} game–platform entries include ${fmt(extra)} additional listings of games on selected consoles. ${money(all.multi)}% of these distinct games appear in more than one console family in the full cleaned catalog.`)+
+          insight('01 / SCOPE',`${fmt(all.unique)} distinct games`,`${fmt(all.count)} game–platform entries ${extra?`include ${fmt(extra)} additional listings of games on selected consoles`:'each represent a distinct game in this selection'}. ${money(all.multi)}% of these distinct games appear in more than one console family in the full cleaned catalog.`)+
           insight('02 / PLATFORM',topPlatform.label,platformStory)+
           insight('03 / GENRE',topGenre.label,genreStory)+
           insight('04 / DATA COVERAGE',`${money(coverage)}% have a review`,`The average score uses ${fmt(all.scoreN)} of ${fmt(all.count)} entries; main-story hours use ${fmt(all.hoursN)} (${money(hourCoverage)}%). Missing values are excluded. Scores and hours belong to games, not separate platform-specific measurements.`);
