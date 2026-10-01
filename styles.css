@@ -80,3 +80,11 @@ main.shell,.site-footer{position:relative;z-index:1}
 @media(max-width:700px){.brand{gap:0}.brand-icon{width:41px;height:41px}}
 @media(max-width:420px){.brand-icon{width:37px;height:37px}}
 @media(prefers-reduced-motion:reduce){.brand-icon{transition:none}.cover-column{transform:translateY(-18%)}}
+
+/* Music stays available while moving between report sections and charts. */
+.music-player{position:fixed;right:22px;bottom:20px;z-index:50;display:flex;align-items:center;gap:12px;width:min(360px,calc(100vw - 32px));padding:11px 14px;border:1px solid #617a9d99;border-radius:14px;background:#101d31ed;box-shadow:0 15px 45px #030915b8;backdrop-filter:blur(16px);color:#edf4ff}
+.music-toggle{flex:none;display:grid;place-items:center;width:42px;height:42px;padding:0;border:1px solid #97b8ed;border-radius:50%;background:linear-gradient(135deg,#426bb4,#2a436f);color:#fff;font-size:1.15rem;cursor:pointer}
+.music-toggle:hover,.music-toggle:focus-visible{background:#5a80c4;outline-offset:3px}
+.music-info{display:grid;gap:2px;min-width:0;flex:1}.music-info strong{font-size:.81rem;white-space:nowrap}.music-info span{font-size:.68rem;color:#b2c6e2;white-space:nowrap}
+.music-volume{display:grid;gap:4px;width:93px;flex:none;color:#c9d9f1;font-size:.68rem}.music-volume span{display:flex;justify-content:space-between;gap:5px}.music-volume input{width:100%;margin:0;accent-color:#88aeed;cursor:pointer}
+@media(max-width:600px){.music-player{right:12px;bottom:12px;width:min(310px,calc(100vw - 24px));gap:9px;padding:9px}.music-info span{display:none}.music-volume{width:80px}}
