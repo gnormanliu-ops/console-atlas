@@ -58,6 +58,66 @@ function initCoverWall(){
 }
 initCoverWall();
 
+// A small original ambient score, synthesized locally; playback starts on a click.
+function initBgm(){
+  const player=document.createElement('aside');
+  player.className='music-player';
+  player.setAttribute('aria-label','Background music player');
+  player.innerHTML='<button class="music-toggle" type="button" aria-label="Play background music" aria-pressed="false">▶</button><div class="music-info"><strong>Atlas ambience</strong><span>Original background music</span></div><label class="music-volume"><span>Volume <output>25%</output></span><input type="range" min="0" max="100" value="25" aria-label="Background music volume"></label>';
+  document.body.append(player);
+  const button=player.querySelector('button'),slider=player.querySelector('input'),output=player.querySelector('output');
+  const AudioEngine=window.AudioContext||window.webkitAudioContext;
+  if(!AudioEngine){button.disabled=true;button.title='Audio playback is not supported in this browser';return;}
+  let context,master,timer,nextTime=0,beat=0,playing=false;
+  const melody=[392,0,440,523.25,0,440,392,329.63,0,349.23,392,0,329.63,293.66,0,0,
+    329.63,0,392,440,0,392,329.63,261.63,0,293.66,329.63,0,293.66,261.63,0,0];
+  const chords=[[130.81,164.81,196],[110,130.81,164.81],[87.31,130.81,174.61],[98,146.83,196]];
+  const interval=60/78;
+  function note(frequency,start,duration,level,wave='sine'){
+    const oscillator=context.createOscillator(),gain=context.createGain();
+    oscillator.type=wave;oscillator.frequency.setValueAtTime(frequency,start);
+    gain.gain.setValueAtTime(.0001,start);
+    gain.gain.exponentialRampToValueAtTime(level,start+.08);
+    gain.gain.exponentialRampToValueAtTime(.0001,start+duration);
+    oscillator.connect(gain).connect(master);
+    oscillator.start(start);oscillator.stop(start+duration+.02);
+  }
+  function schedule(){
+    while(nextTime<context.currentTime+.25){
+      const index=beat%melody.length;
+      if(index%8===0){
+        const chord=chords[Math.floor(index/8)];
+        chord.forEach((f,i)=>note(f,nextTime,interval*7.6,.043-i*.004,'sine'));
+        note(chord[0]/2,nextTime,interval*3.7,.055,'triangle');
+      }
+      if(melody[index])note(melody[index],nextTime,interval*.88,.068,'sine');
+      nextTime+=interval;beat++;
+    }
+  }
+  function setPlaying(value){
+    playing=value;button.textContent=value?'Ⅱ':'▶';
+    button.setAttribute('aria-pressed',String(value));
+    button.setAttribute('aria-label',value?'Pause background music':'Play background music');
+    player.dataset.playing=String(value);
+  }
+  button.addEventListener('click',async()=>{
+    if(playing){clearInterval(timer);setPlaying(false);await context.suspend();return;}
+    try{
+      if(!context){context=new AudioEngine();master=context.createGain();master.gain.value=Number(slider.value)/100;master.connect(context.destination);}
+      await context.resume();nextTime=context.currentTime+.08;
+      schedule();timer=setInterval(schedule,100);setPlaying(true);
+    }catch(error){button.title='Unable to start audio playback';console.warn('Background music:',error);}
+  });
+  slider.addEventListener('input',()=>{
+    output.textContent=`${slider.value}%`;
+    if(master)master.gain.setTargetAtTime(Number(slider.value)/100,context.currentTime,.03);
+  });
+  document.addEventListener('visibilitychange',()=>{
+    if(document.hidden&&playing){clearInterval(timer);setPlaying(false);context.suspend();}
+  });
+}
+initBgm();
+
 function barChart(items, {format=fmt, maxItems=12, color='#6e9efb'}={}) {
   const data=items.slice(0,maxItems).filter(d=>d.value!=null && Number.isFinite(d.value));
   if (!data.length) return '<div class="empty">No observations for this view.</div>';
