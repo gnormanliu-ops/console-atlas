@@ -17,7 +17,7 @@ The source files can be downloaded by the rebuild script. The included derived C
 | `index.html` | Report with eight findings, source notes, and charts. |
 | `dashboard.html` | Filterable in-browser dashboard with four charts and an underlying-numbers table. |
 | `styles.css` | Shared responsive design for both pages. |
-| `site.js` | Report rendering, browser-side filtering, calculations, and charts. |
+| `site.js` | Report rendering, browser-side filtering, calculations, charts, and an original Web Audio background score. |
 | `assets/covers/*.jpg`, `extra-*.js` | Local decorative game cover images used in the moving backdrop. |
 | `assets/logos/*.svg` | Original Console Atlas compass mark and local console brand marks. |
 | `assets/hardware/*` | Local product photographs for the expandable hardware cards. |
@@ -101,3 +101,7 @@ To regenerate the data from the original public source, install pandas and run `
 When you are ready, create a public repository from this folder and commit its files under your GitHub account. Then in GitHub **Settings → Pages**, select **Deploy from a branch → main → / (root)**. The site URL will be `https://USERNAME.github.io/REPOSITORY/`. Both pages use relative paths and work from a repository subpath.
 
 Course submission is a four-line `.txt` or `.md` file with the student's name, student ID, repository URL, and live Pages URL. Fill in the ID and URLs only after publishing; no student ID is included in this public repository.
+
+## Background music
+
+The on-page player synthesizes an original ambient loop in the browser. Click Play to start (browsers require a user action for audible playback). Its initial volume is 25%, and the slider can change or mute it. The soundtrack uses no external audio file or third-party recording.
